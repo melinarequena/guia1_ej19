@@ -9,6 +9,7 @@ int main() {
     enqueue(queue, newNode(2));
     enqueue(queue, newNode(3));
 
+
     printQueue(queue);
 
     pile(dequeue(queue), stack);

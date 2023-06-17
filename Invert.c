@@ -52,7 +52,13 @@ void enqueue(Queue *queue, Node *nodeQueue) {
 
 Node *dequeue(Queue *queue) {
     Node * nodeOut = queue->head;
-    queue->head = queue->head->next;
+    if(queue->head == queue->tail){
+        queue->head = NULL;
+        queue->tail = NULL;
+    }else{
+        queue->head = queue->head->next;
+    }
+    nodeOut->next = NULL;
     return nodeOut;
 }
 
@@ -68,6 +74,7 @@ void pile(Node *nodeOut, Stack *stack) {
 Node *unpile(Stack *stack) {
     Node * nodeOut = stack->top;
     stack->top = stack->top->next;
+    nodeOut->next = NULL;
     return nodeOut;
 }
 
@@ -96,17 +103,15 @@ void printQueue(Queue *queue) {
 }
 
 void printStack(Stack *stack) {
-    Node * aux = stack->top;
-    if(aux == NULL){
+    printf("\nStack:\n");
+    if(stack->top == NULL){
         printf("Empty stack\n");
     }else{
+        Node * aux = stack->top;
         while(aux != NULL){
             printf("%d\n", aux->data);
-            printf("|\n");
-            printf("v\n");
             aux = aux->next;
         }
-        printf("NULL\n");
     }
 }
 
